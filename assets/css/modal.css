@@ -1,0 +1,142 @@
+.modal {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	background: rgba(0, 0, 0, .5);
+	font-size: 1rem;
+}
+
+.modal-enter,
+.modal-leave-to {
+	background: rgba(0, 0, 0, 0);
+}
+
+.modal-enter-active,
+.modal-leave-active {
+	transition: .5s;
+}
+
+.modal__content {
+	width: 31.25rem;
+	max-width: calc(100% - 18.75rem);
+	max-height: calc(100% - 6.25rem);
+	background: #fff;
+	border-radius: 10px;
+	color: #000;
+	overflow: auto;
+	font-size: 1em;
+}
+
+.modal-enter .modal__content,
+.modal-leave-to .modal__content {
+	transform: scale(0, 0);
+}
+
+.modal-enter-active .modal__content,
+.modal-leave-active .modal__content {
+	transition: .5s;
+}
+
+.modal__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+	border-bottom: 1px solid #bbb;
+	font-size: 1.5em;
+	font-weight: 400;
+}
+
+.modal__header-icon {
+	cursor: pointer;
+}
+
+.modal__body {
+	padding: 1rem;	
+}
+
+.modal__footer {
+	padding: .75rem 1rem;
+	border-top: 1px solid #bbb;
+	text-align: right;
+}
+
+.modal__success-btn, .modal__cancel-btn {
+	margin-left: .65em;
+	padding: .5em;
+	border-radius: 4px;
+	font-size: .9em;
+	color: #fff;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.modal__success-btn {
+	background: #2ecc71;
+	border: 1px solid #27ae60;
+}
+
+.modal__success-btn:hover {
+	background: #27ae60;
+}
+
+.modal__success-btn:focus {
+	box-shadow: 0 0 0 4px #55efc4;
+}
+
+.modal__cancel-btn {
+	background: #e74c3c;
+	border: 1px solid #c0392b;
+}
+
+.modal__cancel-btn:hover {
+	background: #c0392b;
+}
+
+.modal__cancel-btn:focus {
+	box-shadow: 0 0 0 4px #fab1a0;
+}
+
+
+/* scrollbar */
+
+.modal__content::-webkit-scrollbar {
+	width: .75rem;
+	height: .75rem;
+}
+
+.modal__content::-webkit-scrollbar-thumb:vertical {
+	background: linear-gradient(to bottom, #333, #fff);
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.modal__content::-webkit-scrollbar-thumb:horizontal {
+	background: linear-gradient(to right, #333, #fff);
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.modal__content::-webkit-scrollbar-corner {
+	background: #fff;
+	border-bottom-right-radius: 10px;
+}
+
+
+/* adaptive view */
+
+@media (max-width: 600px) {
+	.modal__content {
+		width: 100%;
+		max-width: 100%;
+		height: 100%;
+		max-height: 100%;
+		border-radius: 0;
+	}
+}

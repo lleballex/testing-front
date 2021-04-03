@@ -1,0 +1,61 @@
+<svg width="350" height="350" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient y2="Infinity" y1="Infinity" x2="Infinity" x1="Infinity" id="SVGID_1_">
+   <stop stop-color="#F14D5C" offset="0"/>
+   <stop stop-color="#F05454" offset="0.1309"/>
+   <stop stop-color="#ED663E" offset="0.3346"/>
+   <stop stop-color="#ED683C" offset="0.3492"/>
+   <stop stop-color="#F3903F" offset="0.714"/>
+   <stop stop-color="#FDC70C" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="Infinity" y1="Infinity" x2="Infinity" x1="Infinity" id="SVGID_2_">
+   <stop stop-color="#ED6B3C" offset="0"/>
+   <stop stop-color="#EE733D" offset="0.1203"/>
+   <stop stop-color="#F2893F" offset="0.3076"/>
+   <stop stop-color="#F38F3F" offset="0.3492"/>
+   <stop stop-color="#F7A42D" offset="0.714"/>
+   <stop stop-color="#FDC70C" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="Infinity" y1="Infinity" x2="Infinity" x1="Infinity" id="SVGID_3_">
+   <stop stop-color="#EE6243" offset="0"/>
+   <stop stop-color="#ED683C" offset="0.3492"/>
+   <stop stop-color="#F3903F" offset="0.714"/>
+   <stop stop-color="#FDC70C" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="Infinity" y1="Infinity" x2="Infinity" x1="Infinity" id="SVGID_4_">
+   <stop stop-color="#EE723D" offset="0"/>
+   <stop stop-color="#ED6A3C" offset="0.2996"/>
+   <stop stop-color="#ED683C" offset="0.3492"/>
+   <stop stop-color="#F3903F" offset="0.714"/>
+   <stop stop-color="#FDC70C" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="Infinity" y1="Infinity" x2="Infinity" x1="Infinity" id="SVGID_5_">
+   <stop stop-color="#F14D5C" offset="0"/>
+   <stop stop-color="#F05454" offset="0.1309"/>
+   <stop stop-color="#ED663E" offset="0.3346"/>
+   <stop stop-color="#ED683C" offset="0.3492"/>
+   <stop stop-color="#EE5E48" offset="0.714"/>
+   <stop stop-color="#EF763D" offset="1"/>
+  </linearGradient>
+  <linearGradient y2="Infinity" y1="Infinity" x2="Infinity" x1="Infinity" id="SVGID_6_">
+   <stop stop-color="#EF753D" offset="0"/>
+   <stop stop-color="#EE6D3C" offset="0.2485"/>
+   <stop stop-color="#ED683C" offset="0.3492"/>
+   <stop stop-color="#F3903F" offset="0.714"/>
+   <stop stop-color="#F59937" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="352" width="352" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" fill="url(#SVGID_1_)" d="m214.092149,11.137327l-126.988,0c-18.748,0 -34,15.252 -34,34l0,264c0,18.747 15.252,34 34,34l174,0c18.748,0 34,-15.253 34,-34l0,-216.987c0,-9.083 -3.536,-17.621 -9.958,-24.042l-47.012,-47.013c-6.423,-6.421 -14.961,-9.958 -24.042,-9.958zm71.012,298c0,13.233 -10.767,24 -24,24l-174,0c-13.233,0 -24,-10.767 -24,-24l0,-264c0,-13.233 10.767,-24 24,-24l126.988,0c1.531,0 3.039,0.146 4.512,0.425l0,38.075c0,14.888 12.112,27 27,27l38.861,0c0.418,1.786 0.639,3.632 0.639,5.513l0,216.987zm-5.692,-232.5l-33.808,0c-9.374,0 -17,-7.626 -17,-17l0,-33.614c0.859,0.655 1.683,1.367 2.46,2.144l47.012,47.012c0.468,0.469 0.911,0.958 1.336,1.458z"/>
+  <path id="svg_2" fill="url(#SVGID_2_)" d="m220.604149,114.097327c-26.202,0 -47.52,21.317 -47.52,47.52s21.318,47.52 47.52,47.52c26.203,0 47.521,-21.317 47.521,-47.52s-21.318,-47.52 -47.521,-47.52zm0,85.04c-20.688,0 -37.52,-16.831 -37.52,-37.52c0,-20.688 16.831,-37.52 37.52,-37.52s37.521,16.832 37.521,37.52c0,20.689 -16.833,37.52 -37.521,37.52z"/>
+  <polygon id="svg_3" points="147.19215393066406,146.12933695316315 140.12216186523438,139.05833780765533 122.25816345214844,156.92131388187408 104.39515686035156,139.05833780765533 97.32514953613281,146.12933695316315 115.18814849853516,163.9923130273819 97.15415954589844,182.0273472070694 104.22415161132812,189.09730875492096 122.25816345214844,171.0633121728897 140.29315185546875,189.09730875492096 147.36415100097656,182.0273472070694 129.3301544189453,163.9923130273819 " fill="url(#SVGID_3_)"/>
+  <polygon id="svg_4" points="209.95016479492188,172.1893345117569 199.50717163085938,161.74733316898346 192.43716430664062,168.81932413578033 209.95016479492188,186.33131754398346 248.77215576171875,147.51031839847565 241.7021484375,140.4383121728897 " fill="url(#SVGID_4_)"/>
+  <polygon id="svg_5" points="147.19215393066406,240.56532633304596 140.12216186523438,233.49330484867096 122.25816345214844,251.35731852054596 104.39515686035156,233.49330484867096 97.32514953613281,240.56532633304596 115.18814849853516,258.4273258447647 97.15415954589844,276.46132242679596 104.22415161132812,283.53331339359283 122.25816345214844,265.49730265140533 140.29315185546875,283.53331339359283 147.36415100097656,276.46132242679596 129.3301544189453,258.4273258447647 " fill="url(#SVGID_5_)"/>
+  <polygon id="svg_6" points="209.95016479492188,267.70631754398346 199.50717163085938,257.2653080224991 192.43716430664062,264.33531534671783 209.95016479492188,281.8493229150772 248.77215576171875,243.0273472070694 241.7021484375,235.95531046390533 " fill="url(#SVGID_6_)"/>
+ </g>
+</svg>

@@ -50,6 +50,7 @@
 
 	.radio {
 		display: inline-block;
+		flex-shrink: 0;
 		margin-right: .3em;
 		width: 1em;
 		height: 1em;

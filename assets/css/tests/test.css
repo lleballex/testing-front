@@ -24,6 +24,7 @@
 
 .test__question-title > span:first-child {
 	font-weight: 500;
+	margin-right: .3em;
 }
 
 .test__question-answer {

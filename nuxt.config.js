@@ -44,7 +44,7 @@ export default {
     component: 'icon',
     icons: {
       solid: ['faPencilAlt', 'faTimes', 'faChevronUp', 'faChevronDown',
-              'faChevronRight', 'faCheck']
+              'faChevronRight', 'faCheck', 'faPlus']
     }
   }
 }

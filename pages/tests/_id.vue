@@ -22,7 +22,7 @@
 			</div>
 			<div v-for="(question, index) in test.questions" class="content__block mb">
 				<div class="test__question-title">
-					<span>{{index}}.</span>
+					<span>{{index + 1}}.</span>
 					<span>{{question.condition}}</span>
 				</div>
 				<div class="test__question-answer">
@@ -82,7 +82,8 @@
 						statusCode: 403,
 						needsAuth: true
 					})
-				} else this.loading = false
+				}
+				this.loading = false
 			}).catch(error => {
 				if(error.status == 403 &&
 					 error.detail == 'You have already solved this test') {

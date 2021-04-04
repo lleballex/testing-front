@@ -57,7 +57,7 @@
 	.select {
 		position: relative;
 		padding: .8em;
-		width: 12.5rem;
+		width: 13rem;
 		z-index: 1;
 		background: #fff;
 		border-radius: 5px;

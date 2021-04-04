@@ -8,6 +8,13 @@
 				<NuxtLink to="/" class="navbar__main-link" exact>
 					Тесты
 				</NuxtLink>
+				<ul v-if="isUserAuth" class="navbar__extra-menu">
+					<li>
+						<NuxtLink to="/tests/new/" class="navbar__extra-link">
+							Новый тест
+						</NuxtLink>
+					</li>
+				</ul>
 			</li>
 			<li v-if="isUserAuth">
 				<NuxtLink to="/" class="navbar__main-link">
@@ -120,6 +127,7 @@
 		border: 3px solid #2a2a2a;
 		border-radius: 7px;
 		list-style: none;
+		white-space: nowrap;
 		transition: .4s;
 	}
 

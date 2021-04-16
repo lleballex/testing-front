@@ -51,7 +51,7 @@
 					password: this.password
 				}).then(answer => {
 					this.loading = false
-					this.$router.push('/')
+					if(answer.success) this.$router.push('/')
 				})
 			}
 		}

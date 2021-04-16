@@ -1,6 +1,6 @@
 <template>
 	<div class="error content__block">
-		{{error.message}}
+		{{error.statusCode}}. {{error.message}}
 	</div>
 </template>
 

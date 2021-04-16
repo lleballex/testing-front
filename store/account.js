@@ -29,25 +29,20 @@ export const mutations = {
 
 export const actions = {
 	authenticate({ commit }, { username, password }) {
-		return this.$axios({
-			method: 'post',
-			url: 'account/token/get_token/',
-			data: {
-				username: username,
-				password: password
-			},
-			messages: {
-				error: false,
-				success: 'Рад снова тебя видеть'
-			}
-		}).then(response => {
+		return this.$axios.post('account/token/get_token/', {
+			username: username,
+			password: password
+		}, {messages: {
+			error: false,
+			success: 'Рад снова тебя видеть'
+		}}).then(response => {
 			commit('setUser', {
 				username: response.data.username,
 				hasNotifications: response.data.has_notifications
 			})
 
 			var token = response.data.token
-			localStorage.auth_token = token
+			this.$cookies.set('authToken', token)
 			this.$axios.defaults.headers.common['auth-token'] = token
 
 			return utils.success
@@ -119,7 +114,7 @@ export const actions = {
 
 	logout({ commit }) {
 		commit('clearUser')
-		delete localStorage.auth_token
+		this.$cookies.remove('authToken')
 		delete this.$axios.defaults.headers.common['auth-token']
 	} 
 }

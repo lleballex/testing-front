@@ -13,7 +13,7 @@
 			<div class="test__question-answer">
 				<div v-if="question.answer_type == 'RADIOS'" class="test__question-radios">
 					<label v-for="(option, optionIndex) in question.answer_options" class="test__question-radio">
-						<input :value="option" :name="index"	type="radio">
+						<input :value="option" :name="index" type="radio">
 						<span class="radio"></span>
 						<input
 							v-model="question.answer_options[optionIndex]"
@@ -61,6 +61,13 @@
 			questions: []
 		}),
 		methods: {
+			_showError(message) {
+				this.$store.dispatch('messages/show', {
+					type: 'error',
+					text: message
+				})
+			},
+
 			addQuestion() {
 				this.questions.push({
 					condition: '',
@@ -68,6 +75,54 @@
 					answer_type: 'TEXT',
 					answer_options: ['']
 				})
+			},
+
+			getQuestions() {
+				if(this.questions.length == 0) {
+					this._showError('Создай хотя бы один вопрос')
+					return false
+				}
+
+				var check = this.questions.every((item, index) => {
+					if(!item.condition) {
+						this._showError('Необходимо указать все вопросы')
+						return false
+					}
+
+					if(item.answer_type == 'RADIOS') {
+						var radios = document.querySelectorAll(`.test__question-radio > input[type="radio"][name="${index}"]`)
+
+						if(radios.length == 0) {
+							this._showError('У каждого вопроса должен быть ответ')
+							return false
+						}
+
+						var radiosCheck = true
+						radios.forEach(item => {
+							if(!item.value) {
+								this._showError('Необходимо заполнить все ответы')
+								radiosCheck = false
+							}
+						})
+						if(!radiosCheck) return false
+
+						var answer = document.querySelector(`.test__question-radio > input[type="radio"][name="${index}"]:checked`)
+						if(!answer) {
+							this._showError('У каждого вопроса должен быть ответ')
+							return false
+						}
+						item.answer = answer.value
+					}
+
+					if(!item.answer) {
+						this._showError('У каждого вопроса должен быть ответ')
+						return false
+					}
+
+					return true
+				})
+
+				return check ? this.questions : false
 			}
 		}
 	}

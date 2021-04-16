@@ -10,6 +10,11 @@
 				</NuxtLink>
 				<ul v-if="isUserAuth" class="navbar__extra-menu">
 					<li>
+						<NuxtLink to="/tests/solved/" class="navbar__extra-link">
+	 						Решенные
+						</NuxtLink>
+					</li>
+					<li>
 						<NuxtLink to="/tests/new/" class="navbar__extra-link">
 							Новый тест
 						</NuxtLink>
@@ -134,6 +139,7 @@
 	.navbar__extra-link {
 		display: block;
 		padding: .29em .55em;
+		border-bottom: 1px solid powderblue;
 		color: #3498db;
 		font-size: .9em;
 		text-decoration: none;
@@ -143,5 +149,9 @@
 	.navbar__extra-link:hover {
 		background: #eee;
 		cursor: pointer;
+	}
+
+	.navbar__extra-menu > li:last-child > .navbar__extra-link {
+		border-bottom: none;
 	}
 </style>

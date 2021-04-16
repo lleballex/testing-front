@@ -1,7 +1,7 @@
-export default function ({ $axios, store }) {
-	$axios.interceptors.request.use(config => {
-		/* if config.messages == false */
+const defaultErrorMessage = 'Ой-ой! Что-то пошло не так...'
 
+export default function({ $axios, store }) {
+	$axios.interceptors.request.use(config => {
 		if(config.messages == undefined)
 			config.messages = {}
 
@@ -9,7 +9,7 @@ export default function ({ $axios, store }) {
 			config.messages.show = true
 
 		if(config.messages.error == undefined || config.messages.error == true)
-			config.messages.error = 'Ой-ой! Что-то пошло не так...'
+			config.messages.error = defaultErrorMessage
 
 		if(config.messages.notFound == undefined || config.messages.notFound == true)
 			config.messages.notFound = 'Объект не найден'
@@ -54,7 +54,8 @@ export default function ({ $axios, store }) {
 		} else {
 			return Promise.reject({
 				message: message,
-				statusCode: status
+				status: status,
+				statusCode: status,
 			})
 		}
 

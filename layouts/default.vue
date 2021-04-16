@@ -44,26 +44,39 @@
 		outline: none;
 	}
 
-	input[type="radio"] {
+	input[type="radio"], input[type="checkbox"] {
 		display: none;
 	}
 
-	.radio {
+	.radio, .checkbox {
 		display: inline-block;
 		flex-shrink: 0;
 		margin-right: .3em;
 		width: 1em;
 		height: 1em;
-		border-radius: 50%;
 		border: 1px solid #3498db;
 		box-sizing: border-box;
 		font-size: 1.1rem;
 		transition: .3s;
 	}
 
+	.radio {
+		border-radius: 50%;
+	}
+
+	.checkbox {
+		border-radius: 20%;
+	}
+
 	.radio:hover,
 	input[type="radio"]:checked + .radio {
-		border-width: .28em;
+		border-width: .3em;
+		cursor: pointer;
+	}
+
+	.checkbox:hover,
+	input[type="checkbox"]:checked + .checkbox {
+		border-width: .5em;
 		cursor: pointer;
 	}
 

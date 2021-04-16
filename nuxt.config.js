@@ -19,8 +19,9 @@ export default {
   ],
 
   plugins: [
-    '~/plugins/blur',
   	'~/plugins/axios',
+    '~/plugins/auth',
+    '~/plugins/blur',
     '~/plugins/components'
   ],
 
@@ -30,6 +31,7 @@ export default {
 
   modules: [
     '@nuxtjs/axios',
+    'cookie-universal-nuxt',
   ],
 
   axios: {

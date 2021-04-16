@@ -47,22 +47,24 @@
 	import '~/assets/css/tests/list.css'
 
 	export default {
-		data: () => ({
-			tests: null,
-			loading: true,
-			error: ''
-		}),
-		async fetch() {
-			await this.$axios({
-				method: 'get',
-				url: 'tests/',
-				messages: {show: false}
-			}).then(answer => {
-				this.tests = answer.data
+		props: ['asyncTests'],
+		data() {
+			return {
+				loading: true,
+				tests: this.asyncTests ? this.asyncTests : []
+			}
+		},
+		fetch() {
+			if(process.server) {
 				this.loading = false
-			}).catch(error => {
-				this.$nuxt.error(error)
-			})
+			} else if(process.client) {
+				this.$axios.get('tests/', {messages: {
+					show: false
+				}}).then(answer => {
+					this.tests = answer.data
+					this.loading = false
+				}).catch(error => this.$nuxt.error(error))
+			}
 		},
 		methods: {
 			like(test) {

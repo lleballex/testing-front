@@ -24,7 +24,10 @@
 				/>
 			</div>
 		</form>
-		<TestsList ref="testsList" />
+		<TestsList
+			ref="testsList"
+			:asyncTests="tests"
+		/>
 		<transition name="modal">
 			<div v-if="testInfo" class="modal">
 				<div class="modal__content">
@@ -77,6 +80,17 @@
 		components: {
 			TestsList: () => import('@/components/tests/List.vue'),
 			TagsForm: () => import('@/components/tags/Form.vue')
+		},
+		asyncData({ store, $axios, error:nuxtError }) {
+			if(process.server) {
+				return $axios.get('tests/', {messages: {
+					show: false
+				}}).then(answer => ({
+					tests: answer.data
+				})).catch(error => nuxtError(error))
+			} else {
+				return {tests: null}
+			}
 		},
 		methods: {
 			search() {
@@ -190,8 +204,8 @@
 
 	.search__sorting {
 		flex-shrink: 0;
-		width: 13em;
-		background: #d5d5d5;
+		width: 13em !important;
+		background: #d5d5d5 !important;
 	}
 
 	.search__sorting.active {

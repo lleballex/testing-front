@@ -14,8 +14,11 @@
 		data: () => ({
 			loading: true
 		}),
-		fetch() {
-			this.loading = false
+		asyncData({ error }) {
+			error({
+				statusCode: 302,
+				message: 'Здесь ведутся строительные работы...'
+			})
 		}
 	}
 </script>

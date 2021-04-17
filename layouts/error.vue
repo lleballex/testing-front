@@ -1,6 +1,6 @@
 <template>
 	<div class="error content__block">
-		{{error.statusCode}}. {{error.message}}
+		{{error.statusCode}}. {{getMessage()}}
 	</div>
 </template>
 
@@ -9,7 +9,13 @@
 		head: () => ({
 			title: 'Ошибка | Tests for everyone'
 		}),
-		props: ['error']
+		props: ['error'],
+		methods: {
+			getMessage() {
+				if(this.error.needsAuth) return 'Не пущу, пока ты не авторизуешься'
+				return this.error.message
+			}
+		}
 	}
 </script>
 

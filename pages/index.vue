@@ -139,6 +139,7 @@
     font-size: 1.3em;
     font-weight: 500;
     text-transform: uppercase;
+    text-align: center;
     letter-spacing: 8px;
   }
 

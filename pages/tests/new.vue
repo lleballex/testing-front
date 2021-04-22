@@ -20,13 +20,17 @@
 
         this.$refs.editor.startLoading()
 
-        this.$axios.post('tests/', {
+        var data = {
           title: this.$refs.editor.title,
           description: this.$refs.editor.description,
           is_private: this.$refs.editor.isPrivate,
-          image: this.$refs.editor.getImage(),
           questions: questions
-        }).then(response => {
+        }
+
+        var image = this.$refs.editor.getImage()
+        if(image) data.image = image
+
+        this.$axios.post('tests/', data).then(response => {
           this.$refs.editor.stopLoading()
           this.$store.dispatch('messages/show', {
             type: 'success',

@@ -16,6 +16,11 @@
             </NuxtLink>
           </li>
           <li>
+            <NuxtLink to="/tests/my/" class="navbar__extra-link">
+              Мои тесты
+            </NuxtLink>
+          </li>
+          <li>
             <NuxtLink to="/tests/new/" class="navbar__extra-link">
               Новый тест
             </NuxtLink>

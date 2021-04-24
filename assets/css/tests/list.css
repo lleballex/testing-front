@@ -113,6 +113,12 @@
 	font-size: 1.1em;
 }
 
+.tests-list__test-info > div:last-child > div {
+	display: flex;
+	align-items: center;
+	margin-left: .7em;	
+}
+
 .tests-list__test-info > div:last-child span {
 	padding-left: .3em;
 }

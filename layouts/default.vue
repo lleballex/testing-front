@@ -22,6 +22,13 @@
 </script>
 
 <style>
+  :root {
+    --background: #2a2a2a;
+    --success: #2ecc71;
+    --warning: #e74c3c;
+    --radius: 4px;
+  }
+
   * {
     margin: 0;
     padding: 0;

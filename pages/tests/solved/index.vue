@@ -32,7 +32,7 @@
   export default {
     middleware: 'authenticated',
     head: () => ({
-      title: 'Мои тесты | Tests for everyone'
+      title: 'Решенные тесты | Tests for everyone'
     }),
     data: () => ({
       loading: true,

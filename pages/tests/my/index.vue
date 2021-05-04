@@ -1,5 +1,6 @@
 <template>
   <Loading v-if="loading" />
+  <Error v-else-if="!tests.length" message="У тебя еще нет ни одного созданного теста" />
   <div v-else class="tests-list">
     <div v-for="(test, index) in tests" class="tests-list__test-container">
       <NuxtLink

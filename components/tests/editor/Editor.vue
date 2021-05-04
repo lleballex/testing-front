@@ -28,13 +28,13 @@
           <icon @click="chooseImage" icon="image" class="test__image-icon" />
         </div>
       </div>
-      <div>
+      <div style="width: 100%;">
         <label>
           <input v-model="isPrivate" type="checkbox">
           <span class="checkbox"></span>
           <span>Приватный тест</span>
         </label>
-        <TagsForm />
+        <TagsForm class="test__tags-form" />
       </div>
     </div>
     <Questions ref="questions" />
@@ -182,5 +182,16 @@
 
   .test__image-icon:last-child {
     margin-right: 0;
+  }
+
+  .test__tags-form {
+    width: 60% !important;
+    font-size: .9em !important;
+  }
+</style>
+
+<style>
+  .test__tags-form .tags-form__input {
+    border: 2px solid #3498db !important;
   }
 </style>

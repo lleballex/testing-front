@@ -201,6 +201,7 @@
 
   .search__tags {
     width: 100% !important;
+    z-index: 1;
   }
 
   .search__sorting {

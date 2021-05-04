@@ -24,7 +24,8 @@
           title: this.$refs.editor.title,
           description: this.$refs.editor.description,
           is_private: this.$refs.editor.isPrivate,
-          questions: questions
+          questions: questions,
+          tags: this.$refs.editor.getTags()
         }
 
         var image = this.$refs.editor.getImage()

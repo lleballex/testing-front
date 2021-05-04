@@ -29,12 +29,12 @@
         </div>
       </div>
       <div style="width: 100%;">
-        <label>
+        <label style="display: flex; align-items: center; margin-bottom: .5em; width: min-content; white-space: nowrap;">
           <input v-model="isPrivate" type="checkbox">
           <span class="checkbox"></span>
           <span>Приватный тест</span>
         </label>
-        <TagsForm class="test__tags-form" />
+        <TagsForm ref="tagsForm" class="test__tags-form" />
       </div>
     </div>
     <Questions ref="questions" />
@@ -102,6 +102,10 @@
         return this.$refs.cropper.image
       },
 
+      getTags() {
+        return this.$refs.tagsForm.addedTags
+      },
+
       startLoading() {
         this.$refs.finishButtons.loading = true
       },
@@ -129,6 +133,7 @@
   }
 
   .test__image-area {
+    flex-shrink: 0;
     position: relative;
     margin-right: 2em;
     width: 10em;
@@ -185,13 +190,24 @@
   }
 
   .test__tags-form {
-    width: 60% !important;
-    font-size: .9em !important;
+    width: 50% !important;
+    font-size: .84em !important;
   }
 </style>
 
 <style>
   .test__tags-form .tags-form__input {
+    position: relative;
     border: 2px solid #3498db !important;
+  }
+
+  .test__tags-form .tags-form__tags {
+    top: calc(100% - 2px) !important;
+    z-index: 0;
+    border: 2px solid #3498db !important;
+  }
+
+  .test__tags-form .tags-form__form.active .tags-form__input {
+    border-bottom: none !important;
   }
 </style>

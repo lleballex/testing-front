@@ -1,5 +1,7 @@
 <template>
-  <div class="error content__block">{{message}}</div>
+  <div class="yes content__block">
+    {{message}}
+  </div>
 </template>
 
 <script>
@@ -9,7 +11,7 @@
 </script>
 
 <style scoped>
-  .error {
+  .yes {
     margin: 1.2em 0;
     padding: 6.25em 2.9em;
     font-size: 1.5rem;
@@ -19,10 +21,10 @@
     color: #fff;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    animation: no 15s ease infinite;
   }
 
-  @keyframes gradient {
+  @keyframes no {
     0% {
       background-position: 0% 50%;
     }

@@ -1,0 +1,15 @@
+.profile {
+	--profile-padding: 1em;
+
+	display: flex;
+	font-size: 1rem;
+}
+
+.profile__card {
+	padding: 0;
+	width: 100%;
+}
+
+.profile__content {
+	padding: var(--profile-padding);
+}

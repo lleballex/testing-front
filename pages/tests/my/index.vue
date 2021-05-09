@@ -1,6 +1,9 @@
 <template>
   <Loading v-if="loading" />
-  <Message v-else-if="!tests.length" message="У тебя еще нет ни одного созданного теста" />
+  <div v-else-if="!tests.length" class="main-message content__block">
+    У тебя еще нет ни одного созданного теста.
+    <NuxtLink to="/tests/new/">Новый тест</NuxtLink>
+  </div>
   <div v-else class="tests-list">
     <div v-for="(test, index) in tests" class="tests-list__test-container">
       <NuxtLink
@@ -29,7 +32,7 @@
           </div>
         </div>
       </NuxtLink>
-      <div v-blur="toggleMenu" class="test-menu">
+      <div v-extclick="[closeMenu, [test.id]]" class="test-menu">
         <div @click="toggleMenu(test.id)" class="test-menu__icon">
           <icon icon="ellipsis-h" />
         </div>
@@ -46,6 +49,7 @@
 </template>
 
 <script>
+  import '~/assets/css/message.css'
   import '~/assets/css/tests/list.css'
 
   export default {
@@ -83,6 +87,10 @@
         if(!id || this.showedMenu == id)
           this.showedMenu = 0
         else this.showedMenu = id
+      },
+
+      closeMenu(id) {
+        if(this.showedMenu == id) this.showedMenu = 0
       }
     }
   }

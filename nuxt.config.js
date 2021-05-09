@@ -21,8 +21,8 @@ export default {
   plugins: [
   	'~/plugins/axios',
     '~/plugins/auth',
-    '~/plugins/blur',
-    '~/plugins/components'
+    '~/plugins/components',
+    '~/plugins/extclick'
   ],
 
   buildModules: [

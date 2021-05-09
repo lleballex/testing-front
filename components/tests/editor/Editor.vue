@@ -198,6 +198,7 @@
 <style>
   .test__tags-form .tags-form__input {
     position: relative;
+    z-index: 1;
     border: 2px solid #3498db !important;
   }
 

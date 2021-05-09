@@ -26,6 +26,7 @@
     --background: #2a2a2a;
     --success: #2ecc71;
     --warning: #e74c3c;
+    --margin: 1.875rem;
     --radius: 4px;
   }
 
@@ -103,7 +104,7 @@
   }
 
   .content {
-    margin: 0 1.875rem;
+    margin: 0 var(--margin);
   }
 
   @media (max-width: 480px) {
@@ -113,7 +114,7 @@
   }
 
   .content__block {
-    padding: 1.875rem;
+    padding: var(--margin);
     border-radius: .25rem;
     background: #fff;
     color: #000;

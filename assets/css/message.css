@@ -1,0 +1,33 @@
+.main-message {
+	margin: 1.2em 0;
+	padding: 6.25em 2.9em;
+	font-size: 1.5rem;
+	letter-spacing: 2px;
+	line-height: 1.5em;
+	text-align: center;
+	color: #fff;
+	background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+}
+
+.main-message a {
+	position: relative;
+	color: #f1c40f;
+	text-decoration: none;
+}
+
+.main-message a:after {
+	content: '';
+	position: absolute;
+	bottom: -.3em;
+	right: 50%;
+	left: 50%;
+	height: .1em;
+	background: #f1c40f;
+	transition: .3s;
+}
+
+.main-message a:hover:after {
+	left: 0;
+	right: 0;
+}
+

@@ -1,6 +1,9 @@
 <template>
   <Loading v-if="loading" />
-  <Message v-else-if="!tests.length" message="111У тебя еще нет ни одного решенного теста" />
+  <div v-else-if="!tests.length" class="main-message content__block">
+    У тебя еще нет ни одного решенного теста.
+    <NuxtLink to="/">К тестам</NuxtLink>
+  </div>
   <div v-else class="tests-list">
     <div v-for="test in tests" class="tests-list__test-container">
       <NuxtLink
@@ -28,6 +31,7 @@
 </template>
 
 <script>
+  import '~/assets/css/message.css'
   import '~/assets/css/tests/list.css'
 
   export default {

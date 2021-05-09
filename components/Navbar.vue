@@ -28,9 +28,9 @@
         </ul>
       </li>
       <li v-if="isUserAuth">
-        <span class="navbar__main-link">
+        <NuxtLink :to="`/users/${username}/`" class="navbar__main-link">
           {{username}}
-        </span>
+        </NuxtLink>
         <ul class="navbar__extra-menu">
           <li>
             <span @click="$store.dispatch('account/logout')" class="navbar__extra-link">

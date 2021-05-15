@@ -16,7 +16,7 @@
           <div class="tests-list__test-info">
             <div>
               <span>{{test.date_created}}</span>
-              <span>{{test.user.username}}</span>
+              <NuxtLink :to="`/users/${test.user.username}/`">{{test.user.username}}</NuxtLink>
             </div>
             <div>
               <icon
@@ -115,6 +115,15 @@
 
   .tests-list__test-info > div:last-child > span {
     padding-right: .3em;
+  }
+
+  .tests-list__test-info a {
+    color: var(--background);
+    text-decoration: none;
+  }
+
+  .tests-list__test-info a:hover {
+    text-decoration: underline;
   }
 
   .tests-list__test-info-icon {

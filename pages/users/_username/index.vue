@@ -1,10 +1,19 @@
 <template>
   <div class="profile">
-    <LeftCard />
+    <LeftCard :username="username" />
     <div class="profile__card content__block">
       <Menu />
-      <div class="profile__content">
-        ...
+      <Loading v-if="loading" inverse />
+      <div v-else class="profile__content">
+        <div v-if="!tests.length" class="profile__message">Здесь пока ничего нет</div>
+        <div v-else class="profile__area">
+          <div class="profile__area-title">Популярные тесты</div>
+          <div class="profile__area-cards">
+            <NuxtLink v-for="test in tests" :to="`/tests/${test.id}/`" class="profile__area-card">
+              {{test.title}}
+            </NuxtLink>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -14,15 +23,24 @@
   import '~/assets/css/account/profile.css'
 
   export default {
+    data() {
+      return {
+        loading: true,
+        username: this.$route.params.username,
+        tests: []
+      }
+    },
     components: {
       LeftCard: () => import('~/components/account/profile/LeftCard.vue'),
       Menu: () => import('~/components/account/profile/Menu.vue')
     },
-    asyncData({ error }) {
-      error({
-        message: 'Загляни позже. Здесь ведуться строительные работы',
-        statusCode: 200
-      })
+    async fetch() {
+      await this.$axios.get(`account/users/${this.username}/?area=main`, {messages: {
+        show: false
+      }}).then(response => {
+        this.tests = response.data.tests
+        this.loading = false
+      }).catch(error => this.$nuxt.error(error))
     }
   }
 </script>

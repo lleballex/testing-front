@@ -51,7 +51,7 @@
           <th>Начало</th>
           <th>Конец</th>
         </tr>
-        <tr v-for="solution in test.solutions">
+        <tr v-for="solution in test.solutions" @click="showSolution(solution)">
           <td>{{solution.user}}</td>
           <td>{{solution.right_answers}} / {{solution.answers.length}}</td>
           <td>{{solution.date_started}}</td>
@@ -59,6 +59,7 @@
         </tr>
       </table>
     </div>
+    <Solution ref="solution" :solution="activeSolution" />
   </div>
 </template>
 
@@ -74,8 +75,12 @@
       return {
        loading: true,
        id: this.$route.params.id,
-       test: null
+       test: null,
+       activeSolution: null
      }
+    },
+    components: {
+      Solution: () => import('~/components/tests/Solution.vue')
     },
     async fetch() {
       await this.$axios.get(`tests/own/${this.id}/`, {messages: {
@@ -84,6 +89,12 @@
         this.test = response.data
         this.loading = false
       }).catch(error => this.$nuxt.error(error))
+    },
+    methods: {
+      showSolution(solution) {
+        this.activeSolution = solution
+        this.$refs.solution.show()
+      }
     }
   }
 </script>
@@ -161,6 +172,13 @@
     background: #fff;
     border-bottom: 2px solid #dedede;
     color: var(--background);
+    transition: .2s;
+  }
+
+  .test-data__solutions tr:hover td {
+    background: #f3f3f3;
+    color: #01987a;
+    cursor: pointer;
   }
 
   .test-data__solutions tr:last-child td {

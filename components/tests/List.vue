@@ -16,7 +16,9 @@
           <div class="tests-list__test-info">
             <div>
               <span>{{test.date_created}}</span>
-              <NuxtLink :to="`/users/${test.user.username}/`">{{test.user.username}}</NuxtLink>
+              <span @click.prevent="goToUser(test.user.username)" class="tests-list__test-info-link">
+                {{test.user.username}}
+              </span>
             </div>
             <div>
               <icon
@@ -102,6 +104,10 @@
           this.tests = response.data
           this.loading = false
         })
+      },
+
+      goToUser(username) {
+        this.$router.push(`/users/${username}/`)
       }
     }
   }
@@ -117,13 +123,9 @@
     padding-right: .3em;
   }
 
-  .tests-list__test-info a {
-    color: var(--background);
-    text-decoration: none;
-  }
-
-  .tests-list__test-info a:hover {
+  .tests-list__test-info-link:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 
   .tests-list__test-info-icon {

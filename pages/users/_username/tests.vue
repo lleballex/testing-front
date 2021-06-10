@@ -8,7 +8,7 @@
         <div v-if="!tests.length" class="profile__message">Здесь пока ничего нет</div>
         <div v-else class="profile__area">
           <div class="profile__area-cards">
-            <NuxtLink v-for="test in tests" :to="`/test/${test.id}/`" class="profile__area-card">
+            <NuxtLink v-for="test in tests" :key="test.id" :to="`/test/${test.id}/`" class="profile__area-card">
               {{test.title}}
             </NuxtLink>
           </div>

@@ -2,12 +2,14 @@
   <div class="test">
     <div>
       <div
+        ref="titleInput"
         @input="title = $event.target.innerText"
         class="test__title content__block"
         data-placeholder="Название"
         contenteditable
       ></div>
       <div
+        ref="descriptionInput"
         @input="description = $event.target.innerText"
         class="test__description content__block mb"
         data-placeholder="Описание (необязательно)"
@@ -15,14 +17,14 @@
       ></div>
     </div>
     <div class="test__settings content__block mb">
-      <div v-if="hasImagePreview" class="test__image-area">
-        <div id="testPreview" class="test__image"></div>
+      <div v-show="hasImagePreview" class="test__image-area">
+        <div ref="testPreview" id="testPreview" class="test__image"></div>
         <div class="test__image-icons">
           <icon @click="chooseImage" icon="pen" class="test__image-icon" />
           <icon @click="removeImage" icon="trash" class="test__image-icon" />
         </div>
       </div>
-      <div v-else class="test__image-area">
+      <div v-show="!hasImagePreview" class="test__image-area">
         <img class="test__image" src="~/assets/images/test-image.svg">
         <div class="test__image-icons fillen">
           <icon @click="chooseImage" icon="image" class="test__image-icon" />
@@ -37,7 +39,7 @@
         <TagsForm ref="tagsForm" class="test__tags-form" />
       </div>
     </div>
-    <Questions ref="questions" />
+    <Questions v-if="!instanse" ref="questions" />
     <FinishButtons
       ref="finishButtons"
       :success="action"
@@ -58,7 +60,7 @@
   import '~/assets/css/tests/test.css'
 
   export default {
-    props: ['action'],
+    props: ['action', 'instanse'],
     data: () => ({
       title: '',
       description: '',
@@ -70,9 +72,29 @@
       TagsForm: () => import('~/components/tags/Form.vue'),
       Cropper: () => import('~/components/Cropper.vue')
     },
+    mounted() {
+      if(!this.instanse) return
+
+      this.title = this.instanse.title
+      this.description = this.instanse.description
+      this.isPrivate = this.instanse.is_private
+
+      setTimeout(() => {
+        this.$refs.tagsForm.addTags(this.instanse.tags)
+
+        if(this.instanse.image) {
+          var style = 'width: 100%; height: 100%;'
+          this.hasImagePreview = true
+          this.$refs.testPreview.innerHTML = `<img src="${this.instanse.image}" style="${style}">`
+        }
+      }, 0)
+
+      this.$refs.titleInput.innerText = this.title
+      this.$refs.descriptionInput.innerText = this.description
+    },
     methods: {
       clear() {
-        console.log(this.$refs.questions.questions)
+        alert('clearing')
       },
 
       chooseImage() {
@@ -99,6 +121,10 @@
       },
 
       getImage() {
+        if(this.instanse && !this.$refs.cropper.image) {
+          if(this.hasImagePreview) return false
+          else return null
+        }
         return this.$refs.cropper.image
       },
 

@@ -29,11 +29,15 @@
     data: () => ({
       tags: [],
       addedTags: [],
-      query: ''
+      query: '',
+      tagsToAdd: []
     }),
     async fetch() {
       await this.$store.dispatch('tags/getTags').then(answer => {
-        if(answer.success) this.tags = answer.data
+        if(answer.success) {
+          this.tags = answer.data
+          this.tagsToAdd.forEach(tag => this.addTag(tag))
+        }
       })
     },
     methods: {
@@ -57,6 +61,11 @@
         this.tags.push(tag)
         this.addedTags.splice(this.addedTags.indexOf(tag), 1)
         this.$emit('change')
+      },
+
+      addTags(tags) {
+        if(this.tags.length) tags.forEach(tag => this.addTag(tag))
+        else this.tagsToAdd = tags
       }
     }
   }

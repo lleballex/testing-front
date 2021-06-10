@@ -1,4 +1,4 @@
-<template>
+Q<template>
   <Loading v-if="loading" />
   <div v-else style="display: flex; justify-content: space-between;">
     <div class="area">

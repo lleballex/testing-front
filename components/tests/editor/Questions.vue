@@ -112,6 +112,8 @@
 							return false
 						}
 						item.answer = answer.value
+					} else {
+						item.answer_options = []
 					}
 
 					if(!item.answer) {

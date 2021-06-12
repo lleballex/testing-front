@@ -1,3 +1,9 @@
+var description = '\
+Здесь собрано множество тестов на самые различные темы. \
+Проверяй себя, решай их или создавай свои. \
+Хочешь опросить своих друзей, проверить знания учеников или просто изучить мнение посетителей сайта? \
+Тогда тебе точно сюда!'
+
 export default {
   head: {
     title: 'Tests for everyone',
@@ -7,7 +13,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { hid: 'description', name: 'description', content: description }
     ],
     link: [
       { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },

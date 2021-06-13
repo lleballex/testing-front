@@ -27,6 +27,9 @@
           </li>
         </ul>
       </li>
+      <li>
+        <NuxtLink to="/users/" class="navbar__main-link" exact>Участники</NuxtLink>
+      </li>
       <li v-if="isUserAuth">
         <NuxtLink :to="`/users/${username}/`" class="navbar__main-link">
           {{username}}

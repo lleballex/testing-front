@@ -38,6 +38,9 @@
         </div>
         <ul v-show="test.id == showedMenu">
           <li>
+            <NuxtLink :to="`/tests/my/${test.id}/`" class="test-menu__link">Посмотреть</NuxtLink>
+          </li>
+          <li>
             <NuxtLink :to="`/tests/my/${test.id}/update/`" class="test-menu__link">Редактировать</NuxtLink>
           </li>
           <li>

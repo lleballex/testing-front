@@ -81,7 +81,7 @@
       TestsList: () => import('@/components/tests/List.vue'),
       TagsForm: () => import('@/components/tags/Form.vue')
     },
-    asyncData({ store, $axios, error:nuxtError }) {
+    asyncData({ $axios, error:nuxtError }) {
       if(process.server) {
         return $axios.get('tests/', {messages: {
           show: false

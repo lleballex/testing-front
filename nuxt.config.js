@@ -53,7 +53,7 @@ export default {
     icons: {
       solid: ['faPencilAlt', 'faTimes', 'faChevronUp', 'faChevronDown',
               'faChevronRight', 'faCheck', 'faPlus', 'faImage', 'faPen',
-              'faTrash', 'faEllipsisH'],
+              'faTrash', 'faEllipsisH', 'faSearch'],
       regular: ['faEdit', 'faStar']
     }
   }

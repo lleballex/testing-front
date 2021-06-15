@@ -131,6 +131,8 @@
 
         if(result.success) return {test: result.data, loading: false}
         else if(result.data) return {needsAuth: true, loading: false}
+      } else {
+        return {test: null, loading: true, needsAuth: false}
       }
     },
     async fetch() {

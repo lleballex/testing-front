@@ -1,5 +1,9 @@
 <template>
   <Loading v-if="loading" />
+  <div v-else-if="needsAuth" class="main-message content__block">
+    <span>Так, ну сначала нужно</span>
+    <NuxtLink :to="`/login/?next=/tests/${id}/`">авторизоваться</NuxtLink>
+  </div>
   <div v-else class="test-container">
     <div class="test__options">
       <ul title="Рейтинг">
@@ -58,43 +62,94 @@
 </template>
 
 <script>
+  import '~/assets/css/message.css'
   import '~/assets/css/tests/test.css'
 
+  var ID, TITLE, IMAGE;
+
+  async function getTest({ id, axios, nuxtError }) {
+    return axios.get(`tests/${id}/`, {messages: {
+      show: false,
+      error: false,
+      notFound: 'Кажется, такого теста не существует'
+    }}).then(response => ({
+      success: true,
+      data: response.data
+    })).catch(error => {
+      if(error.status == 403 && error.detail == 'You have already solved this test') {
+        nuxtError({
+          statusCode: 403,
+          message: 'Прости, но ты уже решал (решала) этот тест'
+        })
+      } else if(error.status == 403 && error.detail == 'Authorization required') {
+        return {success: false, data: error.data.test}
+      } else {
+        nuxtError(error)
+      }
+
+      return {success: false}
+    })
+  }
+
   export default {
+    head: () => {
+      if(process.server) {
+        return {
+          title: TITLE + ' | Tests for everyone',
+          meta: [
+            {property: 'og:title', content: TITLE},
+            {property: 'og:type', content: 'article'},
+            {property: 'og:url', content: `http://testsforeveryone.ru/tests/${ID}/`},
+            {property: 'og:image', content: IMAGE}
+          ]
+        }
+      }
+    },
     data() {
       return {
         loading: true,
+        needsAuth: false,
         id: this.$route.params.id,
         test: null,
         answers: [],
         dateStarted: 0
       }
     },
-    async fetch() {
-      await this.$axios.get(`tests/${this.id}/`, {messages: {
-        show: false,
-        error: false,
-        notFound: 'Кажется, такого теста не существует'
-      }}).then(response => {
-        this.test = response.data
-        if(this.test.needs_auth && !this.$store.getters['account/isUserAuth']) {
-          this.$nuxt.error({
-            statusCode: 403,
-            needsAuth: true
-          })
+    async asyncData({ route, $axios, store, redirect, error }) {
+      if(process.server) {
+        var result = await getTest({
+          id: route.params.id,
+          axios: $axios,
+          nuxtError: error
+        })
+
+        if(result.data) {
+          ID = route.params.id
+          TITLE = result.data.title
+          IMAGE = result.data.image
         }
-        this.loading = false
-      }).catch(error => {
-        if(error.status == 403 &&
-           error.detail == 'You have already solved this test') {
-          this.$store.dispatch('messages/show', {
-            type: 'error',
-            text: 'Ты уже решал (или решала) этот тест'
-          })
-          this.$router.push('/')
-        } else
-          this.$nuxt.error(error)
-      })
+
+        if(result.success) return {test: result.data, loading: false}
+        else if(result.data) return {needsAuth: true, loading: false}
+      }
+    },
+    async fetch() {
+      if(process.client) {
+        var result = await getTest({
+          id: this.id,
+          axios: this.$axios,
+          nuxtError: this.$nuxt.error
+        })
+
+        if(result.success) {
+          this.test = result.data
+          this.loading = false
+        } else if(result.data) {
+          console.log('fetch needs auth');
+          this.needsAuth = true
+          this.loading = false
+        }
+      }
     },
     mounted() {
       this.dateStarted = new Date().getTime()

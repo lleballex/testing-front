@@ -13,7 +13,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: description }
+      { hid: 'description', name: 'description', content: description },
+      { property: 'og:title', content: 'Tests for everyone'},
+      { property: 'og:type', content: 'website'},
+      { property: 'og:image', content: 'http://testsforeveryone.ru/favicon.svg'},
+      { property: 'og:description', content: description}
     ],
     link: [
       { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },

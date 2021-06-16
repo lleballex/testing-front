@@ -24,7 +24,7 @@
       />
       Войти
     </button>
-    <NuxtLink to="/register/" class="auth-form__extra-link">
+    <NuxtLink :to="{path: '/register/', query: $route.query}" class="auth-form__extra-link">
       Создать аккаунт
     </NuxtLink>
   </form>

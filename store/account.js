@@ -24,6 +24,10 @@ export const mutations = {
 		state.isAuthenticated = false
 		state.hasNotifications = false
 		state.username = ''
+	},
+
+	readNotifications: (state) => {
+		state.hasNotifications = false
 	}
 }
 

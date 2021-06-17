@@ -58,7 +58,9 @@ export default {
       solid: ['faPencilAlt', 'faTimes', 'faChevronUp', 'faChevronDown',
               'faChevronRight', 'faCheck', 'faPlus', 'faImage', 'faPen',
               'faTrash', 'faEllipsisH', 'faSearch'],
-      regular: ['faEdit', 'faStar']
+      regular: ['faEdit', 'faStar', 'faHandPeace', 'faUser', 'faBell']
     }
-  }
+  },
+
+  loading: false
 }

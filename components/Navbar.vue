@@ -3,7 +3,9 @@
     <NuxtLink to="/" class="navbar__logo">
         <img src="@/assets/images/logo.svg">
     </NuxtLink>
-    <div @click="toggleNavbar" class="navbar__bars"></div>
+    <div @click="toggleNavbar" class="navbar__bars-container" :class="hasNotifications ? 'notification' : ''">
+      <div class="navbar__bars"></div>
+    </div>
     <ul @click="hideNavbar" ref="navbarMenu" class="navbar__main-menu">
       <li>
         <NuxtLink to="/" class="navbar__main-link" exact>
@@ -31,10 +33,21 @@
         <NuxtLink to="/users/" class="navbar__main-link" exact>Участники</NuxtLink>
       </li>
       <li v-if="isUserAuth">
-        <NuxtLink :to="`/users/${username}/`" class="navbar__main-link">
+        <NuxtLink
+          :to="`/users/${username}/`"
+          class="navbar__main-link"
+          :class="hasNotifications ? 'notification' : ''"
+        >
           {{username}}
         </NuxtLink>
         <ul class="navbar__extra-menu">
+          <li>
+            <span
+              @click="showNotifications"
+              class="navbar__extra-link"
+              :class="hasNotifications ? 'notification' : ''"
+            >Уведомления</span>
+          </li>
           <li>
             <span @click="$store.dispatch('account/logout')" class="navbar__extra-link">
               Выйти
@@ -55,6 +68,7 @@
         </ul>
       </li>
     </ul>
+    <Notifications ref="notifications" />
   </div>
 </template>
 
@@ -65,8 +79,12 @@
     computed: {
       ...mapGetters('account', [
         'isUserAuth',
-        'username'
+        'username',
+        'hasNotifications'
       ])
+    },
+    components: {
+      Notifications: () => import('~/components/Notifications.vue')
     },
     methods: {
       toggleNavbar() {
@@ -81,6 +99,10 @@
       hideNavbar(event) {
         if(event.target != this.$refs.navbarMenu)
           this.toggleNavbar()
+      },
+
+      showNotifications() {
+        this.$refs.notifications.show()
       }
     }
   }
@@ -101,16 +123,35 @@
     height: 3.5rem;
   }
 
-  .navbar__bars {
+  .navbar__bars-container {
     display: none;
     position: relative;
-    z-index: 101;
+    width: 1.6em;
+    height: 1.6em;
+    z-index: 10;
+  }
+
+  .navbar__bars-container.notification:after {
+    content: '';
+    position: absolute;
+    top: -.4em;
+    right: -.4em;
+    width: .5em;
+    height: .5em;
+    border: 3px solid var(--background);
+    background: #8e44ad;
+    border-radius: 50%;
+  }
+
+  .navbar.active .navbar__bars-container.notification:after {
+    display: none;
   }
 
   .navbar__bars,
   .navbar__bars:before,
   .navbar__bars:after {
-    width: 1.6em;
+    align-self: center;
+    width: 100%;
     height: .15em;
     background: #fff;
     border-radius: 5px;
@@ -121,16 +162,14 @@
   .navbar__bars:after {
     content: '';
     position: absolute;
-    top: 0;
-    right: 0;   
   }
 
   .navbar__bars:before {
-    transform: translateY(-.6em);
+    top: 0;
   }
 
   .navbar__bars:after {
-    transform: translateY(.6em);
+    bottom: 0;
   }
 
   .navbar.active .navbar__bars  {
@@ -179,6 +218,18 @@
     width: 100%;
   }
 
+  .navbar__main-link.notification:before {
+    content: '';
+    position: absolute;
+    top: -.25em;
+    right: -.25em;
+    width: .5em;
+    height: .5em;
+    border-radius: 50%;
+    border: 3px solid var(--background);
+    background: #9b59b6;
+  }
+
   .navbar__main-link:hover + .navbar__extra-menu,
   .navbar__extra-menu:hover {
     max-height: 100px;
@@ -217,13 +268,22 @@
     cursor: pointer;
   }
 
+  .navbar__extra-link.notification {
+    background: #9b59b6;
+    color: #fff;
+  }
+
+  .navbar__extra-link.notification:hover {
+    background: #8e44ad;
+  }
+
   .navbar__extra-menu > li:last-child > .navbar__extra-link {
     border-bottom: none;
   }
 
   @media (max-width: 480px) {
-    .navbar__bars {
-      display: block;
+    .navbar__bars-container {
+      display: flex;
     }
 
     .navbar__main-menu {
@@ -234,7 +294,7 @@
       right: 0;
       bottom: 0;
       width: 0;
-      z-index: 100;
+      z-index: 9;
       visibility: hidden;
       background: #8e44ad;
       transition: 1s cubic-bezier(.645,  .045, .355, 1.000);
@@ -276,6 +336,10 @@
     }
 
     .navbar__main-link.active:after {
+      display: none;
+    }
+
+    .navbar__main-link.notification:before {
       display: none;
     }
 
